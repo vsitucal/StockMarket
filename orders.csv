@@ -1,7 +1,11 @@
 Client,Symbol,Side,Price,Quantity
-Client A,AC,BUY,914,110
+Client A,AC,BUY,914,100
 Client B,AC,SELL,914,100
-Client C ,AC,SELL,914,100
-Itucal,AC,BUY,914,100
-Vincent,BDO,SELL,145,100
-Errick,BDO,BUY ,145,100
+Client C,AC,BUY,914,100
+Client D,AC,SELL,914,100
+Client E,BDO,SELL,145,100
+Client F,BDO,BUY,145,100
+Client G,AC,BUY,914,100
+Client H,BDO,SELL,145,100
+Client I,AC,SELL,914,100
+Client J,BDO,BUY,145,100
