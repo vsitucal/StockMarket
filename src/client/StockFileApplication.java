@@ -17,6 +17,8 @@ public class StockFileApplication {
         static int symbolc;
 	
 	public static void main(String args[]) throws IOException{
+            
+        StockFileApplication sfa = new StockFileApplication();
         //read file
 		StockFileReader fr = new StockFileReader("orders.csv");
 		List<HashMap<String, String>> dataResult = populateStockFileData(fr.getHeaders(), fr.readFileData());
@@ -126,8 +128,6 @@ public class StockFileApplication {
                 buyOffer.add(orderBook.get(buyCount));
             }
         }
-        //System.out.println("Buy Offers:");
-        //System.out.println(buyOffer);
         
         //Sell Offers in order
         LinkedList<HashMap<String, String>> sellOffer = new LinkedList<>();
@@ -137,11 +137,14 @@ public class StockFileApplication {
                 sellOffer.add(orderBook.get(buyCount));
             }
         }
-        //System.out.println("Sell Offers:");
-        //System.out.println(sellOffer);
-            System.out.println(orderBook.size());
-        //while(true){
-            for(int loop=0;loop<orderBook.size();loop++){
+
+        System.out.println(orderBook.size());
+        sfa.processOrders(orderBook);
+       
+        }
+        
+        private void processOrders (LinkedList<HashMap<String, String>> orderBook){
+                        for(int loop=0;loop<orderBook.size();loop++){
                 for(int loop1=0;loop1<orderBook.size();loop1++){
                     if(orderBook.get(loop).get("Symbol").equals(orderBook.get(loop1).get("Symbol"))){
                         if(orderBook.get(loop).get("Side").equals("BUY")){
@@ -187,47 +190,6 @@ public class StockFileApplication {
                     }
                 }
             }
-            //System.out.println(orderBook);
-        //}
-        
-        
-        /*double buy = Double.parseDouble(buyOffer.get(0).get("Price"));
-        int qty1 = Integer.parseInt(buyOffer.get(0).get("Quantity"));
-        for(int loop=0;loop<sellOffer.size();loop++){
-            double sell = Double.parseDouble(sellOffer.get(loop).get("Price"));
-            int qty2 = Integer.parseInt(sellOffer.get(loop).get("Quantity"));
-            if(buyOffer.get(0).get("Symbol").equals(sellOffer.get(loop).get("Symbol"))){
-                
-                if(buy==sell){
-                    
-                    System.out.println("Executing trade of"+buyOffer.get(0)+" and "+sellOffer.get(loop));
-                    if(qty1>qty2){
-                        double n = qty1-qty2;
-                        buyOffer.get(0).put("Quantity", Double.toString(n));
-                        sellOffer.remove(loop);
-                        if(n==0){
-                        buyOffer.remove(0);
-                        }
-                    }
-                    
-                    if(qty2>qty1){
-                        double m = qty2-qty1;
-                        sellOffer.get(loop).put("Quantity", Double.toString(m));
-                        buyOffer.remove(0);
-                        if(m==0){
-                        sellOffer.remove(loop);
-                        }
-                    }
-                    
-                }
-            
-            }      
-        }
-            System.out.println(sellOffer);*/
-            
-        
-        
-	
         }
 	
 	public static List<HashMap<String, String>> populateStockFileData(List<String> headers, List<String> lines){
