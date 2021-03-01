@@ -1,2 +1,2 @@
 # StockMarket
-One of my first java projects, its very messy as I foolishly placed everything in the main method. My apologies
+A simple matching engine, one of my first java projects(academic/learning), made in the first few months learning java.
